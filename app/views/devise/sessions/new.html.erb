@@ -1,0 +1,18 @@
+
+<div class="container-fluid text-center">
+  <br><br>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin col-md-6 offset-md-3'}) do |f| %>
+    <%= image_tag "covid.png", class: 'mb-4', style: 'width: 8rem;' %>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">User Name</label>
+    <%= f.text_field :username, autofocus: true, placeholder: 'User Name', class: 'form-control' %>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', required: true %>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+  <% end %>
+</div>

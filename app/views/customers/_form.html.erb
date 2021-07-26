@@ -1,0 +1,166 @@
+<%= form_for @customer, html: {multipart: true} do |f| %>
+  <div class='row'>
+    <div class='col-sm-4'>Anzahl der Test durchführenden Personen</div>
+    <div class='col-sm-3'><%= f.select :total_person, (1..8),{}, class: 'form-control' %></div>
+    </div>
+  </div>
+  <div class='container'>
+    <br>
+      <div class='row'>
+        <div class='text-primary col-md-12 h5'>Angaben zur Person</div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Name</div>
+        <div class='col-sm-6'><%= f.text_field :name, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Vorname</div>
+        <div class='col-sm-6'><%= f.text_field :first_name, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Geb</div>
+        <div class='col-sm-6'><%= f.date_field :dob, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Straße / Hausnummer</div>
+        <div class='col-sm-6'><%= f.text_field :address, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Postleitzahl / Ort</div>
+        <div class='col-sm-6'><%= f.text_field :post, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Telefon</div>
+        <div class='col-sm-6'><%= f.text_field :phone, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Email addresse</div>
+        <div class='col-sm-6'><%= f.text_field :email, class: 'form-control' %></div>
+      </div>
+  </div>
+  <div class='container' >
+      <div class='row'>
+        <div class='text-primary col-md-12 h5'>Covid-Informationen</div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Tag, Datum, Uhrzeit der Testdurchführung</div>
+        <div class='col-sm-6 ml-2'>
+        <%= f.date_field :test_date, class: 'col-3' %>
+          <%= f.time_field :test_time, class: 'col-2' %>
+          <%= f.text_field :test_day, class: 'col-4' %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Mitteilungsweg an die getestete Person</div>
+        <div class='col-sm-6'>
+         <%= f.select :result_type, ['Email', 'Inpapier', 'QR Code'], { include_blank: true }, require: true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Verwendeter PC Antigentest mit Test ID-Nr.</div>
+        <div class='col-sm-6'><%= f.text_field :test_id, class: 'form-control' %></div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-4'>Bestätigung der test durchführenden Person, Unterschrift, wichtig:</div>
+        <div class='col-sm-6'><%= f.text_field :test_by, class: 'form-control' %>
+          <div class='col-sm-3'>
+            <%= f.hidden_field :user_signature %>
+            <div class="signature_pad text-center">
+              <div class="signature_pad_body">
+                <canvas class='user_signature_canvas'></canvas>
+              </div>
+              <div class="signature_pad_footer">
+                <div class="text-muted">Sign above
+                <button type="button" class="btn btn-warning user_signature_pad_clear" >Clear</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+      <div class='col-sm-4'>
+        <label>Datum</label>
+        <%= f.date_field :form_date, value: Date.today, class: 'form-control' %>
+      </div>
+    </div>
+    <br>
+    <div class='row'>
+    <label>Unterschrift</label>
+      <div class='col-md-6'>
+       <%= f.hidden_field :signature %>
+        <div class="signature_pad text-center">
+          <div class="signature_pad_body">
+            <canvas class='customer_signature_canvas'></canvas>
+          </div>
+          <div class="signature_pad_footer">
+            <div class="text-muted">Sign above
+            <button type="button" class="btn btn-warning signature_pad_clear" >Clear</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <%= f.submit 'Save', class: 'btn btn-success', onclick: 'get_canvas()' %>
+    </div>
+  </div>
+  
+    <br>
+
+    
+  <% end %>
+  <style>
+    canvas {
+        border: 1px solid #cecece;
+    }
+    .row {
+      margin-bottom: 5px;
+    }
+  </style>
+<script>
+function resizeCanvas(canvas) {
+  var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+  canvas.width = canvas.offsetWidth * ratio;
+  canvas.height = canvas.offsetHeight * ratio;
+  canvas.getContext("2d").scale(ratio, ratio);
+}
+
+var canvas = document.querySelector(".customer_signature_canvas");
+if (canvas){
+  canvas.height = canvas.offsetHeight;
+  canvas.width = canvas.offsetWidth;
+  window.onresize = resizeCanvas(canvas);
+  resizeCanvas(canvas);
+  signature_pad = new SignaturePad(canvas);
+  $('.signature_pad_clear').click(function() { signature_pad.clear() });
+  $('.signature_pad_save').click(function(event) {
+    if (signature_pad.isEmpty()){
+      alert('You must sign before saving.');
+      event.preventDefault();
+    } else {
+      $('#customer_signature').val(signature_pad.toDataURL());
+    }
+  });
+}
+
+
+var user_canvas = document.querySelector(".user_signature_canvas");
+if (user_canvas){
+  user_canvas.height = user_canvas.offsetHeight;
+  user_canvas.width = user_canvas.offsetWidth;
+  window.onresize = resizeCanvas(user_canvas);
+  resizeCanvas(user_canvas);
+  user_signature_pad = new SignaturePad(user_canvas);
+  $('.user_signature_pad_clear').click(function() { user_signature_pad.clear() });
+}
+
+
+
+function get_canvas(){
+  if (signature_pad.isEmpty()){
+    alert('You must sign before saving.');
+    event.preventDefault();
+  } else {
+    $('#customer_signature').val(signature_pad.toDataURL());
+  } 
+}
+</script>

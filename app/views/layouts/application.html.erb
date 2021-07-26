@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CovidApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" %>
+    <%= stylesheet_link_tag "https://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" %>
+    
+  </head>
+  <body class="hold-transition skin-black" data-turbolinks='false'>
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% if flash[:error].present? %>
+          <% flash[:error].each do |f| %>
+            toastr['error']('<%= f %>');
+          <% end %>
+        <% else %>
+          <% flash.each do |f| %>
+            <% type = f[0].to_s %>
+            toastr['<%= type %>']('<%= f[1] %>');
+          <% end %>
+        <% end %>
+      </script>
+    <% end %>
+      <% if user_signed_in? %>
+        <%= render 'nav_menu' %>
+        <div class="wrapper">
+          
+          <%#= render 'side_menu' %>
+          <div class="content-wrapper">
+            <section class="content">
+              <%= yield %>
+            </section>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
+  </body>
+</html>
