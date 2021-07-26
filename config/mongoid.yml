@@ -179,6 +179,7 @@ test:
         max_pool_size: 1
 
 production:
+  secret_key_base: 9ab5754642f171a140898ef19cc6466443b0e35e8d320ffdad2c0cb4d1e834b32a721aef3a46065ef8554f6fee6cb3e55313699c9c4cb8744413e22d89bd7c87
   clients:
     default:
       database: covid
