@@ -181,6 +181,7 @@ test:
 production:
   sessions:
     default:
-      database: myapp_production
-      hosts:
-        - localhost
+      database: covid
+      # password: <%= ENV['DB_PASS'] %>
+      # host: <%= ENV['DB_HOST'] %>
+      # port: <%= ENV['DB_PORT'] %>
