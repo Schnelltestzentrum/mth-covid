@@ -60,11 +60,12 @@
 #     # password: "please use keys"
 #   }
 # ubuntu@ec2-3-16-25-99.us-east-2.compute.amazonaws.com
-role :app, %w{deploy_user@ec2-3-16-25-99.us-east-2.compute.amazonaws.com}
-role :web, %w{deploy_user@ec2-3-16-25-99.us-east-2.compute.amazonaws.com}
-role :db,  %w{deploy_user@ec2-3-16-25-99.us-east-2.compute.amazonaws.com}
+role :app, %w{rails_user@ec2-3-16-25-99.us-east-2.compute.amazonaws.com}
+role :web, %w{rails_user@ec2-3-16-25-99.us-east-2.compute.amazonaws.com}
+role :db,  %w{rails_user@ec2-3-16-25-99.us-east-2.compute.amazonaws.com}
 set :ssh_options, {
-   keys: %w(/home/mashood/.ssh/id_rsa),
+   keys: %w(/home/rails_user/.ssh/id_rsa),
    forward_agent: false,
-   auth_methods: %w(publickey password)
+   auth_methods: %w(publickey password),
+   password: 'aws123'
  }

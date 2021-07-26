@@ -179,9 +179,11 @@ test:
         max_pool_size: 1
 
 production:
-  sessions:
+  clients:
     default:
       database: covid
-      # password: <%= ENV['DB_PASS'] %>
-      # host: <%= ENV['DB_HOST'] %>
-      # port: <%= ENV['DB_PORT'] %>
+      hosts:
+        - localhost:27017
+      options:
+        skip_version_check: true
+        safe: true
