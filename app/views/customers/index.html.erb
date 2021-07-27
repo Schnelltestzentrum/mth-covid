@@ -1,0 +1,26 @@
+
+<div class='container-fluid'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tboby>
+      <% @customers.each_with_index do |customer, index| %>
+        <tr>
+          <td><%=index%></td>
+          <td><%=customer.name&.camelize%></td>
+          <td><%=customer.email%></td>
+          <td><%=customer.phone%></td>
+          <td><%=customer.form_date%></td>
+        </tr>
+      <% end %>
+    </tboby>
+
+  </div>
+</div>

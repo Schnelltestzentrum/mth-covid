@@ -1,17 +1,17 @@
+# development:
+#   clients:
+#     default:
+
+#       database: covid_app_development
+#       hosts:
+#         - localhost:27017
+#       options:
+#   options:
+
 development:
   clients:
     default:
-
-      database: covid_app_development
-      hosts:
-        - localhost:27017
-      options:
-  options:
-
-production:
-  clients:
-    default:
-      uri: mongodb+srv://mongouser:mongo123@cluster0.98bbk.mongodb.net/covid?retryWrites=true&w=majority
+      uri: mongodb+srv://mongouser:mongo123@cluster0.98bbk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
 
