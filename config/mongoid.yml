@@ -15,6 +15,13 @@ development:
       options:
         server_selection_timeout: 5
 
+production:
+  clients:
+    default:
+      uri: mongodb+srv://mongouser:mongo123@cluster0.98bbk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      options:
+        server_selection_timeout: 5
+
 test:
   clients:
     default:
