@@ -1,14 +1,14 @@
-# development:
-#   clients:
-#     default:
-
-#       database: covid_app_development
-#       hosts:
-#         - localhost:27017
-#       options:
-#   options:
-
 development:
+  clients:
+    default:
+
+      database: covid_app_development
+      hosts:
+        - localhost:27017
+      options:
+  options:
+
+production:
   clients:
     default:
       uri: mongodb+srv://mongouser:mongo123@cluster0.98bbk.mongodb.net/covid?retryWrites=true&w=majority
@@ -26,13 +26,13 @@ test:
           mode: :primary
         max_pool_size: 1
 
-production:
-  # secret_key_base: 9ab5754642f171a140898ef19cc6466443b0e35e8d320ffdad2c0cb4d1e834b32a721aef3a46065ef8554f6fee6cb3e55313699c9c4cb8744413e22d89bd7c87
-  clients:
-    default:
-      database: covid
-      hosts:
-        - localhost:27017
-      options:
-        skip_version_check: true
-        safe: true
+# production:
+#   # secret_key_base: 9ab5754642f171a140898ef19cc6466443b0e35e8d320ffdad2c0cb4d1e834b32a721aef3a46065ef8554f6fee6cb3e55313699c9c4cb8744413e22d89bd7c87
+#   clients:
+#     default:
+#       database: covid
+#       hosts:
+#         - localhost:27017
+#       options:
+#         skip_version_check: true
+#         safe: true
