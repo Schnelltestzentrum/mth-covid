@@ -19,6 +19,7 @@ class Customer
   field :email, type: String
   field :customer_confirmation, type: Boolean
 
+  field :test_result, type: String, default: 'Negative'
   field :test_date, type: Date
   field :test_time, type: Time
   field :test_day, type: String

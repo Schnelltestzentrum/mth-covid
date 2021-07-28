@@ -43,6 +43,12 @@
         <div class='text-primary col-md-12 h5'>Covid-Informationen</div>
       </div>
       <div class='row'>
+        <div class='col-sm-4'>Ergebnis des Tests</div>
+        <div class='col-sm-6'>
+          <%= f.select :test_result, ['Negative', 'Positive'], {}, require: true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row'>
         <div class='col-sm-4'>Tag, Datum, Uhrzeit der Testdurchführung</div>
         <div class='col-sm-6 ml-2'>
         <%= f.date_field :test_date, class: 'col-3' %>
