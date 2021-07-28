@@ -1,0 +1,94 @@
+<div class='container'>
+    <div class='row'>
+        <div class='col-sm-4'>Anzahl der Test durchführenden Personen</div>
+        <div class='col-sm-3'><%= @customer.total_person %></div>
+    </div>
+    <div class='row'>
+        <div class='text-primary col-md-12 h5'>Angaben zur Person</div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Name</div>
+        <div class='col-sm-6'><%= @customer.name %></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Vorname</div>
+        <div class='col-sm-6'><%= @customer.first_name %></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Geb</div>
+        <div class='col-sm-6'><%= @customer.dob %></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Straße / Hausnummer</div>
+        <div class='col-sm-6'><%= @customer.address %></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Postleitzahl / Ort</div>
+        <div class='col-sm-6'><%= @customer.post %></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Telefon</div>
+        <div class='col-sm-6'><%= @customer.phone%></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Email addresse</div>
+        <div class='col-sm-6'><%= @customer.email%></div>
+    </div>
+</div>
+<div class='container' >
+    <div class='row'>
+        <div class='text-primary col-md-12 h5'>Covid-Informationen</div>
+    </div>
+    <div class="row">
+        <div class='col-sm-6'>
+        Art der Leistung: Z.B. COVID 19 Schnelltest (Bürgertest)
+        </div>
+        <div class='col-sm-4'>
+        <%= @customer.get_test_type %>
+        </div>        
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Ergebnis des Tests</div>
+        <div class='col-sm-6'>
+        <%= @customer.test_result %>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Tag, Datum, Uhrzeit der Testdurchführung</div>
+        <div class='col-sm-6 ml-2'>
+        <%= "#{@customer.test_time} - #{@customer.test_date} - #{@customer.test_day}" %>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Mitteilungsweg an die getestete Person</div>
+        <div class='col-sm-6'>
+        <%= @customer.result_type %>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Verwendeter PC Antigentest mit Test ID-Nr.</div>
+        <div class='col-sm-6'><%= @customer.test_id %></div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>Bestätigung der test durchführenden Person, Unterschrift, wichtig:</div>
+        <div class='col-sm-3'><%= @customer.test_by %></div>
+        <div class='col-sm-12'>
+          <%= image_tag(@customer.user_signature.url, alt: 'user_signature', class: 'img-thumbnail img-fluid', style: 'max-width: 250px;max-height: 250px;') if @customer.user_signature? %>
+        </div>
+    </div>
+    <div class='row'>
+    <div class='col-sm-4'>
+        <label>Datum</label>
+        <%= @customer.form_date %>
+    </div>
+    </div>
+    <br>
+    <div class='row'>
+    <div class='col-sm-6'>Unterschrift</div>
+    <div class='col-sm-12'>
+      <%= image_tag(@customer.signature.url, alt: 'signature', class: 'img-thumbnail img-fluid', style: 'max-width: 250px;max-height: 250px;') if @customer.signature? %>
+    </div>
+    </div>
+    <div class='row'>
+    </div>
+</div>

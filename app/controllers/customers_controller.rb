@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @customers = current_user.customers
+    @customers = current_user.customers.order_by(form_date: :desc)
   end
 
   def new
@@ -24,12 +24,16 @@ class CustomersController < ApplicationController
     end    
   end
 
+  def show
+    @customer = Customer.find(params[:id])
+  end
+
   private
 
   def customer_params
     params.require(:customer).permit(:name, :first_name, :dob, :address, :post, :phone, :email,
      :customer_confirmation, :test_date, :test_time, :test_day, :result_type, :test_id, :form_date,
-    :test_by, :total_person, :signature, :user_signature, :test_result)
+    :test_by, :total_person, :signature, :user_signature, :test_result, :test_type)
   end
 
   def convert_data_uri_to_upload(obj_hash)

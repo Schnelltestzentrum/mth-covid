@@ -13,8 +13,10 @@
     <tboby>
       <% @customers.each_with_index do |customer, index| %>
         <tr>
-          <td><%=index%></td>
-          <td><%=customer.name&.camelize%></td>
+          <td><%=index+1%></td>
+          <td>
+            <%= link_to customer.name&.camelize, customer %>
+          </td>
           <td><%=customer.email%></td>
           <td><%=customer.phone%></td>
           <td><%=customer.form_date%></td>

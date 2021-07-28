@@ -1,11 +1,10 @@
 <%= form_for @customer, html: {multipart: true} do |f| %>
-  <div class='row'>
-    <div class='col-sm-4'>Anzahl der Test durchführenden Personen</div>
-    <div class='col-sm-3'><%= f.select :total_person, (1..8),{}, class: 'form-control' %></div>
-    </div>
-  </div>
   <div class='container'>
-    <br>
+     <div class='row'>
+      <div class='col-sm-4'>Anzahl der Test durchführenden Personen</div>
+      <div class='col-sm-3'><%= f.select :total_person, (1..8),{}, class: 'form-control' %></div>
+     </div>  
+     <br>
       <div class='row'>
         <div class='text-primary col-md-12 h5'>Angaben zur Person</div>
       </div>
@@ -41,6 +40,14 @@
   <div class='container' >
       <div class='row'>
         <div class='text-primary col-md-12 h5'>Covid-Informationen</div>
+      </div>
+      <div class="row">
+        <div class='col-sm-6'>
+          Art der Leistung: Z.B. COVID 19 Schnelltest (Bürgertest)
+        </div>
+        <div class='col-sm-4'>
+          <%= f.select :test_type, [['PoC-Antigen Test', 'poc'], ['PCR Test', 'pcr']], {}, require: true, class: 'form-control' %>
+        </div>        
       </div>
       <div class='row'>
         <div class='col-sm-4'>Ergebnis des Tests</div>

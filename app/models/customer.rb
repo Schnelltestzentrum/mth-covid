@@ -20,6 +20,7 @@ class Customer
   field :customer_confirmation, type: Boolean
 
   field :test_result, type: String, default: 'Negative'
+  field :test_type, type: String
   field :test_date, type: Date
   field :test_time, type: Time
   field :test_day, type: String
@@ -28,4 +29,8 @@ class Customer
   field :form_date, type: Date
   field :test_by, type: String
   field :total_person, type: Integer
+
+  def get_test_type
+    { 'poc' => 'PoC-Antigen Test', 'pcr' => 'PCR Test' }[test_type]
+  end
 end
