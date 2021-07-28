@@ -73,7 +73,9 @@
         <div class='col-sm-4'>Bestätigung der test durchführenden Person, Unterschrift, wichtig:</div>
         <div class='col-sm-3'><%= @customer.test_by %></div>
         <div class='col-sm-12'>
-          <%= image_tag(@customer.user_signature.url, alt: 'user_signature', class: 'img-thumbnail img-fluid', style: 'max-width: 250px;max-height: 250px;') if @customer.user_signature? %>
+          <% if @customer.user_signature.url.present? %>
+            <%= image_tag(@customer.user_signature.url, alt: 'user_signature', class: 'img-thumbnail img-fluid', style: 'max-width: 250px;max-height: 250px;') %>
+          <% end %>
         </div>
     </div>
     <div class='row'>
