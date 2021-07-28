@@ -1,3 +1,27 @@
 <div class='container'>
   <%= render 'form' %>
 </div>
+
+<script>
+  $('#customer_signature_btn').click(function(event) {
+    if ($('#customer_signature_modal').html() == "") {
+      $('#customer_signature_modal').html("<%= escape_javascript(render('customer_signature.html'))%>")
+    }     
+    $('#customer_signature_modal').modal('show');
+  })
+  $('#customer_user_signature_btn').click(function(event) {
+    if ($('#customer_user_signature_modal').html() == "") {
+      $('#customer_user_signature_modal').html("<%= escape_javascript(render('user_signature.html'))%>")
+    }     
+    $('#customer_user_signature_modal').modal('show');
+  })
+</script>
+
+<style>
+  canvas {
+    border: 1px solid #cecece;
+  }
+  .row {
+    margin-bottom: 5px;
+  }
+</style>

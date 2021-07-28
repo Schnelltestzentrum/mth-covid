@@ -4,11 +4,11 @@ class Customer
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
 
-  validates_presence_of :name, :first_name, :dob, :test_date, :test_time, :form_date
+  validates_presence_of :name, :first_name, :dob, :test_date, :test_time, :form_date, :signature, :user_signature
 
   belongs_to :user
   mount_uploader :signature, SignatureUploader
-  mount_uploader :user_signature, SignatureUploader
+  mount_uploader :user_signature, UserSignatureUploader
 
   field :name, type: String
   field :first_name, type: String

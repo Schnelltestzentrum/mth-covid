@@ -1,0 +1,40 @@
+<div class="modal-dialog" style='max-width: 99%;'>
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Unterschrift</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="signature_pad_body">
+     <canvas class='customer_user_signature_canvas' width=600 height=600></canvas>
+   </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning customer_signature_pad_clear" >Clear</button>
+    <button type="button" class="btn btn-primary customer_signature_pad_save">Save</button>
+  </div>
+</div>
+</div>
+<script>
+var canvas = document.querySelector(".customer_user_signature_canvas");
+if (canvas){
+
+  signature_pad = new SignaturePad(canvas);
+  $('.customer_signature_pad_clear').click(function() { 
+    signature_pad.clear()
+    $('#customer_user_signature').val("")
+    $('#customer_user_signature_btn').removeClass('btn-success').addClass('btn-warning')
+  });
+  $('.customer_signature_pad_save').click(function(event) {
+    if (signature_pad.isEmpty()){
+      alert('You must sign before saving.');
+      event.preventDefault();
+    } else {
+      $('#customer_user_signature').val(signature_pad.toDataURL());
+      $('#customer_user_signature_modal').modal('hide')
+      $('#customer_user_signature_btn').addClass('btn-success').removeClass('btn-warning')
+    }
+  });
+}
+</script>
+
