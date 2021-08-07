@@ -76,3 +76,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "fog-aws" #AWS S3
+
+gem 'spreadsheet' #Spreadsheet export
+
+# gem 'kaminari'#Pagination
+gem 'kaminari-mongoid'
+gem 'kaminari-actionview'

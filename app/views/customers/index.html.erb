@@ -1,28 +1,11 @@
 
 <div class='container-fluid'>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tboby>
-      <% @customers.each_with_index do |customer, index| %>
-        <tr>
-          <td><%=index+1%></td>
-          <td>
-            <%= link_to customer.name&.camelize, customer %>
-          </td>
-          <td><%=customer.email%></td>
-          <td><%=customer.phone%></td>
-          <td><%=customer.form_date%></td>
-        </tr>
-      <% end %>
-    </tboby>
-
+  
+  <div class='col-sm-10 offset-1 p-3 border-1 border' >
+    <%= render 'filters' %>
+  </div>
+  <div id='customer-data'>
+    <%= render 'index' %>
+  </div>
   </div>
 </div>

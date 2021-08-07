@@ -4,6 +4,10 @@ class Customer
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
 
+  default_scope { order_by(form_date: :desc) }
+
+  paginates_per 5
+
   validates_presence_of :name, :first_name, :dob, :test_date, :test_time, :form_date, :signature, :user_signature
 
   belongs_to :user

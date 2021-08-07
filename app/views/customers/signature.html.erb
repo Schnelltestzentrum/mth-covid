@@ -1,0 +1,9 @@
+<% if params[:type] == 'user' && @customer.user_signature.url.present? %>
+  <div class='col-sm-12'>
+    <%= image_tag(@customer.user_signature.url, alt: 'signature', class: 'img-thumbnail img-fluid', style: 'max-width: 250px;max-height: 250px;') if @customer.signature? %>
+  </div>
+<% elsif @customer.signature.url.present? %>
+  <div class='col-sm-12'>
+    <%= image_tag(@customer.signature.url, alt: 'signature', class: 'img-thumbnail img-fluid', style: 'max-width: 250px;max-height: 250px;') if @customer.signature? %>
+  </div>
+<% end %>

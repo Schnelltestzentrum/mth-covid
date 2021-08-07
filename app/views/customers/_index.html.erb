@@ -1,0 +1,30 @@
+<% if @customers.present? %>
+  <%= link_to 'export', customers_path(format: :xls, start_date: @start_date, end_date: @end_date), class: 'btn btn-success mt-4 col-sm-4' %>
+<% end %>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody id='customer-data'>
+  <%if @customers.present? %>
+      <% @customers.each_with_index do |customer, index| %>
+        <tr>
+          <td><%=index+1%></td>
+          <td><%= link_to customer.name&.camelize, customer %></td>
+          <td><%=customer.email%></td>
+          <td><%=customer.phone%></td>
+          <td><%=customer.form_date%></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><td colspan=5 class='text-center'>No Records</td></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @customers, remote: true %>

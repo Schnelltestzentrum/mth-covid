@@ -1,8 +1,21 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:signature]
   
   def index
-    @customers = current_user.customers.order_by(form_date: :desc)
+    @start_date = params[:start_date] || Date.today.beginning_of_month
+    @end_date = params[:end_date] || Date.today
+    @page = params[:page] || 0
+
+    @customers = current_user.customers.where(form_date: @start_date..@end_date)
+    respond_to do |format|
+      format.html { @customers = @customers.page(@page) }
+      format.js { @customers = @customers.page(@page) }
+      format.xls {
+        @spreadsheet = CustomerSpreadsheet.new(@customers, signature_customers_url)
+        file = @spreadsheet.genarate
+        send_file("#{Rails.root}/#{file}")
+      }
+    end
   end
 
   def new
@@ -26,6 +39,10 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+  end
+
+  def signature
+    show
   end
 
   private
