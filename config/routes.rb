@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     collection do
       get :signature
     end
+    member do
+      get :add
+    end
   end
 
   resources :store, only: [:new, :create, :index]

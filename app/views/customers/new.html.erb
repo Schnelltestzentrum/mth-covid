@@ -15,6 +15,9 @@
     }     
     $('#customer_user_signature_modal').modal('show');
   })
+  <% if @user.present? %>
+    <%= render 'add.js' %>
+  <% end %>
 </script>
 
 <style>

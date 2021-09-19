@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_user!, except: [:signature]
+  before_action :authenticate_user!, except: [:signature, :add]
+  layout 'outside', only: [:add]
   
   def index
     @start_date = params[:start_date] || Date.today.beginning_of_month
@@ -20,6 +21,12 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+  end
+
+  def add
+    @user = User.find(params[:id])
+    new
+    render :new
   end
 
   def create

@@ -37,6 +37,13 @@
         <div class='col-sm-6'><%= f.text_field :email, class: 'form-control' %></div>
       </div>
   </div>
+  <% if @user.present? %>
+    <div class='row'>
+      <div class='col-sm-12'>
+        <p>Ich bin damit einverstanden, dass das Schnelltestzentrum Gudrunstr. 6 im Falle eines positiven Covid-19-Schnelltestes die notwendigen persönlichen Daten (Name, Anschrift, E-Mail, Telefonnummer, Testergebnis) an das Gesundheitsamt der Bezirksämter in Berlin weitergibt. Das zuständige Gesundheitsamt …darf meine Daten dann zur direkten Kontaktaufnahme nutzen. </p>
+      </div>
+     </div>
+  <% end %>
   <div class='container' >
       <div class='row'>
         <div class='text-primary col-md-12 h5'>Covid-Informationen</div>
