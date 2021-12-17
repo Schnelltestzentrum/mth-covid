@@ -1,12 +1,12 @@
-
 class Customer
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
 
   default_scope { order_by(form_date: :desc) }
+  attr_accessor :month, :day, :year
 
-  validates_presence_of :name, :first_name, :dob, :test_date, :test_time, :form_date, :signature, :user_signature
+  validates_presence_of :name, :first_name, :dobs, :test_date, :test_time, :form_date, :signature, :user_signature
 
   belongs_to :user
   mount_uploader :signature, SignatureUploader
@@ -15,6 +15,7 @@ class Customer
   field :name, type: String
   field :first_name, type: String
   field :dob, type: Date
+  field :dobs, type: String
   field :address, type: String
   field :post, type: String
   field :phone, type: String

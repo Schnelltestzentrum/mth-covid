@@ -16,7 +16,9 @@
     </div>
     <div class='row'>
         <div class='col-sm-4'>Geb</div>
-        <div class='col-sm-6'><%= @customer.dob %></div>
+        <div class='col-sm-6'>
+          <%= @customer.dobs.blank? ? @customer.dob : @customer.dobs  %>
+        </div>
     </div>
     <div class='row'>
         <div class='col-sm-4'>Straße / Hausnummer</div>

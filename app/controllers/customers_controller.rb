@@ -41,7 +41,7 @@ class CustomersController < ApplicationController
         flash[:error] = @customer.errors.messages.collect{|k, v| "#{k.to_s.humanize} #{v[0]}"}
         format.html { render :new }
       end
-    end    
+    end
   end
 
   def show
@@ -57,7 +57,7 @@ class CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:name, :first_name, :dob, :address, :post, :phone, :email,
      :customer_confirmation, :test_date, :test_time, :test_day, :result_type, :test_id, :form_date,
-    :test_by, :total_person, :signature, :user_signature, :test_result, :test_type)
+    :test_by, :total_person, :signature, :user_signature, :test_result, :test_type, :dobs)
   end
 
   def convert_data_uri_to_upload(obj_hash)

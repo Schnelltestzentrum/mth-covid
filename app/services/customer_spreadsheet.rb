@@ -16,7 +16,7 @@ class CustomerSpreadsheet
       row[0] = i
       row[1] = customer.name
       row[2] = customer.first_name
-      row[3] = customer.dob
+      row[3] = customer.dobs.blank? ? customer.dob : customer.dobs 
       row[4] = customer.address
       row[5] = customer.post
       row[6] = customer.phone
